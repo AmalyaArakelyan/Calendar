@@ -1,11 +1,11 @@
 //reducers
 import { CalendarReducer } from './Calendar/CalendarReducer';
-import { ItemListReducer } from './ItemList/ItemListReducer';
 import { SearchReducer } from './Search/SearchReducer';
+import {ItemListReducer} from './ItemList/ItemListReducer'
 
 const rootReducer = {
   calendar: CalendarReducer,
-  itemList: ItemListReducer,
+  toDoList: ItemListReducer,
   search:SearchReducer
 };
 
