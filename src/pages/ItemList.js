@@ -1,10 +1,14 @@
 import React from 'react';
+//Components
+import ListHeader from '../components/itemList/ListHeader'
+import List from '../components/itemList/List'
 
 export default function ItemList() {
 
   return (
-    <div id="list">
-      ItemList
+    <div className='list-page'>
+      <ListHeader />
+      <List />
     </div>
   );
 }
