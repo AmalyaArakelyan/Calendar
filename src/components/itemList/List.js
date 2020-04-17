@@ -29,7 +29,7 @@ const mapStateToProps = state => {
 
 const mapStateToAction = dispatch => {
     return {
-        getAllToDoList: lang => dispatch(getAllToDoList())
+        getAllToDoList: () => dispatch(getAllToDoList())
     };
 };
 
