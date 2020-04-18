@@ -1,0 +1,14 @@
+@import "../../assets/css/valiables.scss";
+
+.item {
+  td{
+    text-align: center;
+  }
+  h2{
+    color:$main-color-darck;
+    text-align: left;
+  }
+  p{
+    text-align: left;
+  }
+}

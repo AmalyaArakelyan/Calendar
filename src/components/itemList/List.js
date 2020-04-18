@@ -1,7 +1,7 @@
-import React, {useEffect} from 'react';
-import {connect} from 'react-redux';
+import React, {useEffect} from "react";
+import {connect} from "react-redux";
 //Actions
-import {getAllToDoList} from '../../redux/ToDo/ToDoAction'
+import {getAllToDoList} from "../../redux/ToDo/ToDoAction"
 //Components
 import Item from './Item'
 
@@ -12,11 +12,25 @@ function List(props) {
         getAllToDoList()
     }, [])
 
+    console.log(toDoList, "toDoList")
     return (
         <div className='list'>
-            {toDoList && toDoList.map(item =>{
-                return <Item item={item} />
-            })}
+            <table class="table table-striped ">
+                <thead>
+                    <tr>
+                    <th>id</th>
+                    <th>Title && description</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {toDoList && toDoList.map(item =>{
+                        return <Item key={item.id} item={item} />
+                    })}
+                </tbody>
+            </table>
+            
         </div>
     );
 }

@@ -97,7 +97,8 @@ export const getAllToDoList = () => {
       });
       }else{
         (!newList) && (newList = []);
-        formData.id=newList.length
+        formData.id=newList.length +1;
+        formData.status = "Incomplete"
         newList.push(formData)
 
         //Save newList in locale storage
@@ -106,6 +107,10 @@ export const getAllToDoList = () => {
         dispatch({
           type: CHANGE_LIST,
           payload: newList
+        });
+        dispatch({
+          type: OPEN_MODAL,
+          payload: false
         });
       }
       

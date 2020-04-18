@@ -1,6 +1,7 @@
 import {GET_ALL, CHANGE_LIST, OPEN_MODAL,CHANGE_ERROR, CHANGE_DATA} from './Types'
+const toDoList = JSON.parse(localStorage.getItem('toDoList'));
 const initState = {
-      allItems:[],
+      allItems:toDoList,
       open:false,
       errors:null,
       formData:{}
@@ -16,7 +17,7 @@ export const ToDoReducer = (state = initState, action) => {
                   case CHANGE_LIST:
                         return{
                               ...state,
-                              allItems:action.payload
+                              allItems:[...action.payload]
                         };
                   case OPEN_MODAL:
                         return{
