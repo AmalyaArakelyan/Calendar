@@ -4,9 +4,9 @@ import {connect} from 'react-redux';
 import {changeFormInput} from '../../redux/ToDo/ToDoAction'
 //Components
 import filds from "./Filds"
-import TextArea from "../FormElements/TexArea"
-import Datapicker from "../FormElements/Datapicker"
-import TextInput from "../FormElements/TexInput"
+import TextArea from "../elements/TexArea"
+import Datapicker from "../elements/Datapicker"
+import TextInput from "../elements/TexInput"
 function CreateItem(props) {
     const {changeFormInput, formData, errors} = props;
      

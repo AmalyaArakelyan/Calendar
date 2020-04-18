@@ -4,6 +4,8 @@ import {connect} from "react-redux";
 import {getAllToDoList} from "../../redux/ToDo/ToDoAction"
 //Components
 import Item from './Item'
+//Style
+import "./List.scss"
 
 function List(props) {
     const {toDoList, getAllToDoList} = props
@@ -15,11 +17,11 @@ function List(props) {
     console.log(toDoList, "toDoList")
     return (
         <div className='list'>
-            <table class="table table-striped ">
+            <table className="table table-striped ">
                 <thead>
                     <tr>
                     <th>id</th>
-                    <th>Title && description</th>
+                    <th className="text-left">Title && description</th>
                     <th>Status</th>
                     <th>Actions</th>
                     </tr>

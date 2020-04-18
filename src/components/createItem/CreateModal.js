@@ -1,12 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import {connect} from 'react-redux';
 //Bootstrap
-import { Modal, Button } from 'react-bootstrap';
+// import { Modal, Button } from 'react-bootstrap';
 //Actions
-import {getAllToDoList} from '../../redux/ToDo/ToDoAction'
 import {openModal, saveItem} from '../../redux/ToDo/ToDoAction'
 //Components
 import CreateForm from './CreateForm'
+import Modal from "../elements/Modal"
 
 function ModalWrapp(props) {
   const {open, openModal, saveItem} = props
@@ -20,22 +20,14 @@ function ModalWrapp(props) {
   }
 
   return (
-      <Modal show={open} onHide={openCreate}>
-        <Modal.Header>
-          <Modal.Title>Add a new todo due ti 12 APR 2020 </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <CreateForm/>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={openCreate}>
-            cansel
-          </Button>
-          <Button variant="primary" onClick={saveNewItem}>
-            Save To Do
-          </Button>
-        </Modal.Footer>
-      </Modal>
+    <Modal 
+      title="Add a new todo due ti 12 APR 2020" 
+      butonText="Save Todo"  
+      submit={saveNewItem} 
+      show={open} 
+      onHide={openCreate}>
+        <CreateForm/>
+    </Modal>
   );
 }
 const mapStateToProps = state => {
