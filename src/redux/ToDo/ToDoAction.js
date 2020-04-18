@@ -71,9 +71,6 @@ export const getAllToDoList = () => {
       });
     };
   }
-  export const changeStatus = () => {
-
-  }
 
   /**
     * Save new item in todo list
@@ -81,7 +78,7 @@ export const getAllToDoList = () => {
     * @param  {object} formData it is new item date, geting from store
     * @param  {Object} errors geting from store, if it exist dispatch error
     * @param  {Array} newList all items, geting from store and change it
-    * @return {Object} payload new changed todo list 
+    * @return {Array} payload new changed todo list 
     */
 
   export const saveItem = () => {
@@ -114,5 +111,68 @@ export const getAllToDoList = () => {
         });
       }
       
+    };
+  }
+   /**
+    * change todo status in list
+    * 
+    * @param  {number} id item of the element to be changed
+    * @param  {Array} newList all items, geting from store and change it
+    *           If there is an endpoint, can make a request,
+    *           it is not correct to change item in Array
+    * @return {Array} new updated todo list 
+    */
+
+   export const changeStatus = (id) => {
+     debugger
+    return async (dispatch, getState) => {
+      let newList = getState().toDoList.allItems
+
+      for (var i = 0; i < newList.length; i++) {
+    
+        if (newList[i].id === id) {
+          newList[i].status = "Complete";
+          break;
+        }
+      }
+      //Save newList in locale storage
+      localStorage.setItem('toDoList', JSON.stringify(newList));
+
+      dispatch({
+        type: CHANGE_LIST,
+        payload: newList
+      });
+    };
+  }
+
+  /**
+    * delete todo item from list
+    * 
+    * @param  {number} id item of the element to be deleted
+    * @param  {Array} newList all items, geting from store and change it
+    *          If there is an endpoint, can make a request,
+    *          it is not correct to change item in Array
+    * @return {Array} new updated todo list 
+    */
+
+   export const deleteItem = (id) => {
+     debugger
+    return async (dispatch, getState) => {
+      let newList = getState().toDoList.allItems
+      
+      for (var i = 0; i < newList.length; i++) {
+    
+        if (newList[i].id === id) {
+          newList.splice(i, 1);
+          break;
+        }
+      }
+      //Save newList in locale storage
+      localStorage.setItem('toDoList', JSON.stringify(newList));
+
+      dispatch({
+        type: CHANGE_LIST,
+        payload: newList
+      });
     };
   }

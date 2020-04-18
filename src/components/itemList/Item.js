@@ -17,7 +17,7 @@ function Item(props) {
         <td>
           <button type="button" className="btn btn-outline-dark" disabled>{item.status}</button>
         </td>
-        <td><Actions /></td>
+        <td><Actions item={item} /></td>
       </tr>
     );
 }
