@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 //Actions
-import {getAllToDoList} from '../../redux/ItemList/ItemListAction'
+import {getAllToDoList} from '../../redux/ToDo/ToDoAction'
 //Components
 import Item from './Item'
 

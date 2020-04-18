@@ -5,13 +5,13 @@ import { Button } from 'react-bootstrap';
 //Style
 import './ListHeader.scss'
 //Actions
-import {openModal} from '../../redux/CreateItem/CreateItemAction'
+import {openModal} from '../../redux/ToDo/ToDoAction'
 
 function ListHeader(props) {
   const {openModal} = props
 
   const openCreate = () =>{
-    openModal()
+    openModal(true)
   }
 
   return (
@@ -26,7 +26,7 @@ function ListHeader(props) {
 
 const mapStateToAction = dispatch => {
   return {
-    openModal: () => dispatch(openModal())
+    openModal: open => dispatch(openModal(open))
   };
 };
 
