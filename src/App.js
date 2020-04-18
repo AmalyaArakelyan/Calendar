@@ -2,6 +2,7 @@ import React from 'react';
 //Style
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "./assets/css/Globals.scss"
 //Routing
 import Routing from './Router';
 //Redux

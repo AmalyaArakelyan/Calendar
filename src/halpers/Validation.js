@@ -46,6 +46,7 @@ export const  checkAll = (data, filds) => {
       (!errors) && (errors = {});
       errors[fild.name] = error
     }
+    return error;
   })
   return errors;
 }

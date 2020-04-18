@@ -109,6 +109,10 @@ export const getAllToDoList = () => {
           type: OPEN_MODAL,
           payload: false
         });
+        dispatch({
+          type: CHANGE_DATA,
+          payload: {}
+        });
       }
       
     };
