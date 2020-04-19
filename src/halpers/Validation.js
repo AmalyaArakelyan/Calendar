@@ -35,6 +35,17 @@ export const Validation = {
         message:'Description is required'
       }
     }
+  },
+
+  date : (value) => {
+    if(value){
+      return;
+    }else{
+      return {
+        type:'required',
+        message:'Date is required'
+      }
+    }
   }
 
 }

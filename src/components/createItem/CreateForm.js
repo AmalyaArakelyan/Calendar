@@ -14,6 +14,9 @@ function CreateItem(props) {
         const {value, name} = e.target;
         changeFormInput(name, value)
     }
+    const changeDate = e => {
+        changeFormInput('date', e)
+    }
 
     return (
         <div className='create-form'>
@@ -37,8 +40,8 @@ function CreateItem(props) {
                         fild.form === "datepicker"?
                             <Datapicker 
                             fild={fild} 
-                            onChange={onChange}
-                            value={formData.title}
+                            onChange={changeDate}
+                            value={formData.date}
                             errors={errors}
                             />
                             :null

@@ -84,9 +84,9 @@ export const getAllToDoList = () => {
   export const saveItem = () => {
     return async (dispatch, getState) => {
       let formData = getState().toDoList.formData;
-      const errors = checkAll(formData, filds);
       let newList = getState().toDoList.allItems
-
+      //Check validation
+      const errors = checkAll(formData, filds);
       if(errors){
        dispatch({
         type: CHANGE_ERROR,
@@ -128,7 +128,6 @@ export const getAllToDoList = () => {
     */
 
    export const changeStatus = (id) => {
-     debugger
     return async (dispatch, getState) => {
       let newList = getState().toDoList.allItems
 
@@ -160,7 +159,6 @@ export const getAllToDoList = () => {
     */
 
    export const deleteItem = (id) => {
-     debugger
     return async (dispatch, getState) => {
       let newList = getState().toDoList.allItems
       
