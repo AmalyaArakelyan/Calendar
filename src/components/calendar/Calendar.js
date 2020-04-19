@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import * as dateFns from "date-fns";
 import './Calendar.scss'
+//Components
+import ToDoItems from "./ToDoItems"
 
-const Calendar = () => {
+const Calendar = (props) => {
+    const {selected, selectDate} = props
     const [currentDate, setCurrentDate] = useState(new Date());
     const [selectedDate, setSelectedDate] = useState(new Date());
 
+    console.log(selected, "selected")
     const header = () => {
         const dateFormat = "MMMM YYYY";
         return (
@@ -33,6 +37,50 @@ const Calendar = () => {
         return <div className="days row">{days}</div>;
     };
 
+    const cellsWithTodo = ()  => {
+        
+        const monthStart = dateFns.startOfMonth(currentDate);
+        const monthEnd = dateFns.endOfMonth(monthStart);
+        const startDate = dateFns.startOfWeek(monthStart);
+        const endDate = dateFns.endOfWeek(monthEnd);
+        const dateFormat = "D";
+        const rows = [];
+
+        let days = [];
+        let day = startDate;
+        let formattedDate = "";
+        while (day <= endDate) {
+            for (let i = 0; i < 7; i++) {
+                formattedDate = dateFns.format(day, dateFormat);
+                const dayAndManth = dateFns.format(day, "MM/D")
+                const cloneDay = day;
+                days.push( 
+                    <div 
+                        className={`column cell 
+                        ${!dateFns.isSameMonth(day, monthStart)
+                        ? "disabled" : dateFns.isSameDay(day, selectedDate) 
+                        ? "active-cell" : selected[dateFns.getDay(day)]
+                        ? "selected"  : ""}`} 
+                        key={day} 
+                        onClick={() => selectDate(dateFns.parse(cloneDay))}
+                        > 
+                            <span className="number">{formattedDate}</span>
+                            <span className="bg">{formattedDate}</span>
+                            {selected[dayAndManth] && <ToDoItems selectedItems={selected[dayAndManth]} /> }
+                    </div>
+                );
+                day = dateFns.addDays(day, 1);
+            }
+        rows.push(
+            <div className="row" key={day}> {days} </div>
+            );
+        days = [];
+        }
+
+        return <div className="body">{rows}</div>;
+        
+    }
+
     const cells = () => {
         const monthStart = dateFns.startOfMonth(currentDate);
         const monthEnd = dateFns.endOfMonth(monthStart);
@@ -44,19 +92,18 @@ const Calendar = () => {
         let days = [];
         let day = startDate;
         let formattedDate = "";
-        debugger
         while (day <= endDate) {
             for (let i = 0; i < 7; i++) {
                 formattedDate = dateFns.format(day, dateFormat);
                 const cloneDay = day;
             days.push(
                 <div 
-                className={`column cell 
+                className={`column small cell 
                 ${!dateFns.isSameMonth(day, monthStart)
                 ? "disabled" : dateFns.isSameDay(day, selectedDate) 
                 ? "selected" : "" }`} 
                 key={day} 
-                onClick={() => onDateClick(dateFns.parse(cloneDay))}
+                onClick={() => selectDate(dateFns.parse(cloneDay))}
                 > 
                     <span className="number">{formattedDate}</span>
                     <span className="bg">{formattedDate}</span>
@@ -85,7 +132,7 @@ const Calendar = () => {
         <div className="calendar">
             <div>{header()}</div>
             <div>{days()}</div>
-            <div>{cells()}</div>
+            <div>{selected ? cellsWithTodo() : cells()}</div>
         </div>
     );
 };

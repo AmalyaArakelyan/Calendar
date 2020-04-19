@@ -1,0 +1,16 @@
+.show-todo{
+  div{
+    display: flex;
+    align-items: center;
+    margin-bottom: 3px;
+    background: #eaeaea
+  }
+  img{
+    width: 25px;
+  }
+  h4{
+    font-size: 13px;
+    text-align: right;
+    margin-right: 5px;
+  }
+}
