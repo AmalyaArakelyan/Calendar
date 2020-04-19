@@ -118,6 +118,13 @@ align-items: center;
         top: .75em;
         right: .75em;
         font-weight: 700;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
         }
       &:hover .number, .calendar .body .selected .number   {
         visibility:hidden;

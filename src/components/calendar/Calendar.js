@@ -6,10 +6,10 @@ import ToDoItems from "./ToDoItems"
 
 const Calendar = (props) => {
     const {selected, selectDate} = props
-    const [currentDate, setCurrentDate] = useState(new Date());
     const [selectedDate, setSelectedDate] = useState(new Date());
 
-    console.log(selected, "selected")
+    const currentDate = dateFns.format(new Date(), "MM") === "04" ? new Date() : new Date("04/01/2020")
+
     const header = () => {
         const dateFormat = "MMMM YYYY";
         return (
@@ -59,10 +59,10 @@ const Calendar = (props) => {
                         className={`column cell 
                         ${!dateFns.isSameMonth(day, monthStart)
                         ? "disabled" : dateFns.isSameDay(day, selectedDate) 
-                        ? "active-cell" : selected[dateFns.getDay(day)]
+                        ? "active-cell" : selected[dayAndManth]
                         ? "selected"  : ""}`} 
                         key={day} 
-                        onClick={() => selectDate(dateFns.parse(cloneDay))}
+                        onClick={() => onDateClick(dateFns.parse(cloneDay))}
                         > 
                             <span className="number">{formattedDate}</span>
                             <span className="bg">{formattedDate}</span>
@@ -103,7 +103,7 @@ const Calendar = (props) => {
                 ? "disabled" : dateFns.isSameDay(day, selectedDate) 
                 ? "selected" : "" }`} 
                 key={day} 
-                onClick={() => selectDate(dateFns.parse(cloneDay))}
+                onClick={() => onDateClick(dateFns.parse(cloneDay))}
                 > 
                     <span className="number">{formattedDate}</span>
                     <span className="bg">{formattedDate}</span>
@@ -126,6 +126,7 @@ const Calendar = (props) => {
 
     const onDateClick = day => {
         setSelectedDate(day);
+        selectDate(day)
     }
 
     return (

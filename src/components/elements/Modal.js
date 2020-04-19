@@ -1,11 +1,12 @@
 import React from 'react';
 //Bootstrap
 import { Modal, Button } from 'react-bootstrap';
-
+//Style
+import "./Modal.scss"
 export default function ModalWrap(props) {
   const {title, butonText, show, onHide, children, submit} = props
   return (
-      <Modal show={show} onHide={onHide}>
+      <Modal show={show} onHide={onHide} centered>
         <Modal.Header>
         <Modal.Title>{title}</Modal.Title>
         </Modal.Header>

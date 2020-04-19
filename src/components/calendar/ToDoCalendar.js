@@ -1,18 +1,30 @@
 import React, {useEffect, useState} from 'react';
 import {connect} from "react-redux";
 import * as dateFns from "date-fns";
+//Bootstrap
+import { Modal, Button } from 'react-bootstrap';
 //Actions
 import {getAllToDoList} from "../../redux/ToDo/ToDoAction"
 //Components
 import Calendar from './Calendar'
-
+import ToDoList from "./ToDoList"
 function ToDoCalendar(props) {
-  const [todoDates, setTodoDates] = useState({})
   const {toDoList, getAllToDoList} = props
 
+  const [todoDates, setTodoDates] = useState({})
+  const [open, setOpen] = useState(false)
+  const [selectedDate, setSelectedDate] = useState(null)
+  
+
   useEffect(() => {
-    getDatesArray()
+    if(toDoList){
+      getDatesArray()
+    }
   }, [toDoList])
+
+  useEffect(() => {
+    getAllToDoList()
+  }, [])
 
   const getDatesArray = () => {
       let CheckObject = {}
@@ -30,9 +42,26 @@ function ToDoCalendar(props) {
       setTodoDates(CheckObject)
   }
 
+  const openListModal = () =>setOpen(!open)
+
+  const selectDate = e => {
+    setSelectedDate(e)
+    setOpen(true)
+  }
+
   return (
     <div id="to-do-calendar">
-      <Calendar selected={todoDates} />
+      <Calendar selected={todoDates} selectDate={selectDate}/>
+      {selectedDate && todoDates[dateFns.format(selectedDate, "MM/D")]
+      ?<Modal show={open} onHide={openListModal} centered>
+        <Modal.Header closeButton>
+        <Modal.Title>To Do list of {dateFns.format(selectedDate, "MM/D/YYYY")}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <ToDoList selected={todoDates[dateFns.format(selectedDate, "MM/D")]}/>
+        </Modal.Body>
+      </Modal>
+      :null}
     </div>
   );
 }
