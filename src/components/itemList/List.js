@@ -8,7 +8,7 @@ import Item from './Item'
 import "./List.scss"
 
 function List(props) {
-    const {toDoList, getAllToDoList, keyword, history} = props
+    const {toDoList, getAllToDoList, keyword,} = props
     const [searchResult, setResult] = useState(null)
 
     useEffect(() => {

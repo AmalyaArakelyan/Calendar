@@ -1,6 +1,6 @@
 import React from 'react';
 //Bootstrap
-import { Navbar, Nav, Form, Button, FormControl} from 'react-bootstrap';
+import { Navbar, Nav} from 'react-bootstrap';
 //Router
 import { NavLink } from 'react-router-dom';
 //Components
