@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {format} from "date-fns";
 //Bootstrap
-import { Modal, Button } from 'react-bootstrap';
+import { Modal} from 'react-bootstrap';
 //icons
 import calendar from "../../assets/icons/calendar.png"
 //Style
@@ -10,7 +10,7 @@ import "./Datepicker.scss"
 import Calendar from "../calendar/Calendar";
 
 export default function Datepicker(props) {
-  const {fild, onChange, value, errors} = props
+  const { onChange, value, errors} = props
 
   const [open, setOpen] = useState(false)
 

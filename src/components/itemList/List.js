@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
 //Actions
 import {getAllToDoList} from "../../redux/ToDo/ToDoAction"
@@ -8,13 +8,27 @@ import Item from './Item'
 import "./List.scss"
 
 function List(props) {
-    const {toDoList, getAllToDoList} = props
-    
+    const {toDoList, getAllToDoList, keyword, history} = props
+    const [searchResult, setResult] = useState(null)
+
     useEffect(() => {
         getAllToDoList()
     }, [])
 
-    console.log(toDoList, "toDoList")
+    useEffect(() => {
+        if(keyword){
+            const result = toDoList.filter(item => item.title.includes(keyword));
+            setResult(result)
+        }else{
+            setResult(null)
+        }
+
+    }, [keyword, toDoList])
+
+    
+
+    const itemList = searchResult || toDoList
+
     return (
         <div className='list'>
             <table className="table table-striped ">
@@ -27,7 +41,7 @@ function List(props) {
                     </tr>
                 </thead>
                 <tbody>
-                    {toDoList && toDoList.map(item =>{
+                    {itemList && itemList.map(item =>{
                         return <Item key={item.id} item={item} />
                     })}
                 </tbody>
@@ -39,7 +53,8 @@ function List(props) {
 
 const mapStateToProps = state => {
     return {
-        toDoList:state.toDoList.allItems
+        toDoList:state.toDoList.allItems,
+        keyword:state.search.keyword
     };
 };
 

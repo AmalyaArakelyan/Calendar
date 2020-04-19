@@ -1,0 +1,16 @@
+.form-group{
+  display: flex;
+  .form-control{
+    margin-right: 3px;
+    padding-right: 40px;
+  }
+}
+.search{
+  position: relative;
+  .icon{
+    width: 30px;
+    position: absolute;
+    right: 10px;
+    top:3px
+  }
+}

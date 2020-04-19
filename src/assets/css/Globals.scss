@@ -1,3 +1,10 @@
+@import "./valiables.scss";
 .error{
   color:red
+}
+.navbar-dark{
+  .navbar-brand{
+    color:$main-color;
+    font-weight: 600;
+  }
 }

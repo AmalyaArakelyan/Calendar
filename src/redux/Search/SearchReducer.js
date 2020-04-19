@@ -1,4 +1,4 @@
-import { CHANGE, GET } from './Types';
+import { CHANGE, CLEAR } from './Types';
 
 const initState = {
   keyword: null,
@@ -12,10 +12,10 @@ export const SearchReducer = (state = initState, action) => {
         ...state,
         keyword: action.payload,
       };
-    case GET:
+    case CLEAR:
       return {
         ...state,
-        keyword: action.payload,
+        keyword: null,
       };
     default:
       return state;

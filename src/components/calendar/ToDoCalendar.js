@@ -2,25 +2,24 @@ import React, {useEffect, useState} from 'react';
 import {connect} from "react-redux";
 import * as dateFns from "date-fns";
 //Bootstrap
-import { Modal, Button } from 'react-bootstrap';
+import { Modal } from 'react-bootstrap';
 //Actions
 import {getAllToDoList} from "../../redux/ToDo/ToDoAction"
 //Components
 import Calendar from './Calendar'
 import ToDoList from "./ToDoList"
 function ToDoCalendar(props) {
-  const {toDoList, getAllToDoList} = props
+  const {toDoList, getAllToDoList, keyword} = props
 
   const [todoDates, setTodoDates] = useState({})
   const [open, setOpen] = useState(false)
   const [selectedDate, setSelectedDate] = useState(null)
   
-
   useEffect(() => {
     if(toDoList){
       getDatesArray()
     }
-  }, [toDoList])
+  }, [toDoList, keyword])
 
   useEffect(() => {
     getAllToDoList()
@@ -28,17 +27,35 @@ function ToDoCalendar(props) {
 
   const getDatesArray = () => {
       let CheckObject = {}
-      for (var i = 0; i < toDoList.length; i++) {
-        const item = toDoList[i]
-        const day = item.date && dateFns.format(item.date, "MM/D");
-        if(CheckObject[day]){
-          CheckObject[day].push(item)
-        }else{
-          CheckObject[day]=[]
-          CheckObject[day].push(item)
+      if(keyword){
+        for (let i = 0; i < toDoList.length; i++) {
+          const item = toDoList[i]
+          if(item.title.includes(keyword)){
+            const day = item.date && dateFns.format(item.date, "MM/D");
+            if(CheckObject[day]){
+              CheckObject[day].push(item)
+            }else{
+              CheckObject[day]=[]
+              CheckObject[day].push(item)
+            }
+          }
+          
+          
         }
-        
+      }else{
+        for (let i = 0; i < toDoList.length; i++) {
+          const item = toDoList[i]
+          const day = item.date && dateFns.format(item.date, "MM/D");
+          if(CheckObject[day]){
+            CheckObject[day].push(item)
+          }else{
+            CheckObject[day]=[]
+            CheckObject[day].push(item)
+          }
+          
+        }
       }
+      
       setTodoDates(CheckObject)
   }
 
@@ -68,7 +85,8 @@ function ToDoCalendar(props) {
 
 const mapStateToProps = state => {
   return {
-      toDoList:state.toDoList.allItems
+      toDoList:state.toDoList.allItems,
+      keyword:state.search.keyword
   };
 };
 
