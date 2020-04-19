@@ -31,22 +31,23 @@ function List(props) {
 
     return (
         <div className='list'>
+            {itemList && 
             <table className="table table-striped ">
                 <thead>
                     <tr>
                     <th>id</th>
                     <th className="text-left">Title && description</th>
-                    <th>Status</th>
+                    <th className="text-left">Status</th>
                     <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {itemList && itemList.map(item =>{
+                    {itemList.map(item =>{
                         return <Item key={item.id} item={item} />
                     })}
                 </tbody>
             </table>
-            
+            }
         </div>
     );
 }

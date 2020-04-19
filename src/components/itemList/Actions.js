@@ -28,15 +28,18 @@ function Actions(props) {
           className="btn btn-outline-danger">
             delete
         </button>
-        <hr />
+        
         {
           item.status === "Incomplete" &&
-          <button 
-            onClick={openDoneDialog} 
-            type="button" 
-            className="btn btn-primary">
-              Make as done
-          </button>
+          <>
+            <hr />
+            <button 
+              onClick={openDoneDialog} 
+              type="button" 
+              className="btn btn-primary done">
+                Make as done
+            </button>
+          </>
         }
         
         <Modal 

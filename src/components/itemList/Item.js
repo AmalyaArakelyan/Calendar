@@ -3,6 +3,9 @@ import React from "react";
 import Actions from "./Actions"
 //Style
 import "./Item.scss"
+//Icons
+import noCheck from "../../assets/icons/noCheck.png"
+import check from "../../assets/icons/check.png"
 
 function Item(props) {
     const {item} = props
@@ -15,7 +18,10 @@ function Item(props) {
           <p>{item.description}</p>
         </td>
         <td>
-          <button type="button" className="btn btn-outline-dark" disabled>{item.status}</button>
+          <p>
+            {item.status}
+            <img className="icon" src={item.status === "Incomplete" ? noCheck : check} alt="status" />
+          </p>
         </td>
         <td><Actions item={item} /></td>
       </tr>

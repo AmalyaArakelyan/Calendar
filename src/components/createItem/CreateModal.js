@@ -21,7 +21,7 @@ function ModalWrapp(props) {
 
   return (
     <Modal 
-      title="Add a new todo due ti 12 APR 2020" 
+      title="Add a new todo" 
       butonText="Save Todo"  
       submit={saveNewItem} 
       show={open} 

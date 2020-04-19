@@ -6,5 +6,8 @@
   .navbar-brand{
     color:$main-color;
     font-weight: 600;
+    &:hover{
+      color:$main-color;
+    }
   }
 }
